@@ -1,6 +1,5 @@
 import { Controller, Get } from '@nestjs/common';
 import { AppService } from './app.service';
-import { throwError } from 'rxjs';
 
 @Controller()
 export class AppController {
@@ -8,6 +7,6 @@ export class AppController {
 
   @Get()
   getHello() {
-       return this.appService.getHello();
+    return this.appService.getHello();
   }
 }
