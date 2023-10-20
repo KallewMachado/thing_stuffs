@@ -1,6 +1,16 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  UseGuards,
+} from '@nestjs/common';
 import { CategoriesService } from './categories.service';
 import { Prisma } from '@prisma/client';
+import { AuthGuard } from 'src/auth/guards/auth.guard';
 
 @Controller('categories')
 export class CategoriesController {
@@ -10,7 +20,7 @@ export class CategoriesController {
   create(@Body() createCategoryDto: Prisma.CategoryCreateInput) {
     return this.categoriesService.create(createCategoryDto);
   }
-
+  @UseGuards(AuthGuard)
   @Get()
   findAll() {
     return this.categoriesService.findAll();
@@ -22,7 +32,10 @@ export class CategoriesController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateCategoryDto: Prisma.CategoryUpdateInput) {
+  update(
+    @Param('id') id: string,
+    @Body() updateCategoryDto: Prisma.CategoryUpdateInput,
+  ) {
     return this.categoriesService.update(+id, updateCategoryDto);
   }
 
