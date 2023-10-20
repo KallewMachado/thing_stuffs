@@ -4,26 +4,37 @@ import { PrismaService } from 'src/common/prisma_service/prisma.service';
 
 @Injectable()
 export class ThingsService {
-  
-constructor(private readonly prisma: PrismaService){}
+  constructor(private readonly prisma: PrismaService) {}
 
   create(createThingDto: Prisma.ThingCreateInput) {
-    return 'This action adds a new thing';
+    return this.prisma.thing.create({
+      data: createThingDto,
+    });
   }
 
   findAll() {
-    return `This action returns all things`;
+    return this.prisma.thing.findMany({
+      include: { category: true },
+    });
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} thing`;
+    return this.prisma.thing.findUnique({
+      where: { id },
+      include: { category: true },
+    });
   }
 
   update(id: number, updateThingDto: Prisma.ThingUpdateInput) {
-    return `This action updates a #${id} thing`;
+    return this.prisma.thing.update({
+      where: { id },
+      data: updateThingDto,
+    });
   }
 
   remove(id: number) {
-    return `This action removes a #${id} thing`;
+    return this.prisma.thing.delete({
+      where: { id },
+    });
   }
 }

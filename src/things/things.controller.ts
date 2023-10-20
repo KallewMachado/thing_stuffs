@@ -1,7 +1,14 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { ThingsService } from './things.service';
 import { Prisma } from '@prisma/client';
-
 
 @Controller('things')
 export class ThingsController {
@@ -23,7 +30,10 @@ export class ThingsController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateThingDto: Prisma.ThingUpdateInput) {
+  update(
+    @Param('id') id: string,
+    @Body() updateThingDto: Prisma.ThingUpdateInput,
+  ) {
     return this.thingsService.update(+id, updateThingDto);
   }
 
