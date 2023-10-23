@@ -12,6 +12,7 @@ import { CategoriesService } from './categories.service';
 import { Prisma } from '@prisma/client';
 import { AuthGuard } from 'src/auth/guards/auth.guard';
 
+@UseGuards(AuthGuard)
 @Controller('categories')
 export class CategoriesController {
   constructor(private readonly categoriesService: CategoriesService) {}
@@ -20,7 +21,7 @@ export class CategoriesController {
   create(@Body() createCategoryDto: Prisma.CategoryCreateInput) {
     return this.categoriesService.create(createCategoryDto);
   }
-  @UseGuards(AuthGuard)
+
   @Get()
   findAll() {
     return this.categoriesService.findAll();
