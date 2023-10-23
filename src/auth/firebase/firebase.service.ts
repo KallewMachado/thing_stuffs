@@ -20,7 +20,5 @@ export class FirebaseService {
     } catch (error) {
       return false;
     }
-
-    return true;
   }
 }
