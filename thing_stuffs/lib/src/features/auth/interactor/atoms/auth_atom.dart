@@ -7,10 +7,10 @@ final authState = Atom<AuthState>(InitAuth(), key: 'authState');
 
 final checkAuthAction = Atom.action(key: 'checkAuthAction');
 
-final loginWithEmailAction = Atom<EmailCredentialDTO?>(
-  null,
+final loginWithEmailAction = Atom<EmailCredentialDTO>(
+  EmailCredentialDTO(),
   key: 'loginWithEmailAction',
 );
 final logoutAction = Atom.action(
-  key: 'loginWithEmailAction',
+  key: 'logoutAction',
 );

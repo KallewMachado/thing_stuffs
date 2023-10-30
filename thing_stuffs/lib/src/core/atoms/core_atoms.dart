@@ -9,4 +9,5 @@ final globalLoaderState = Atom(
 final globalExceptionsState = Atom<ThingsException?>(
   null,
   key: 'globalExceptionsState',
+  pipe: interval(const Duration(seconds: 1)),
 );
